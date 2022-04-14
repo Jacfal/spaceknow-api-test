@@ -3,6 +3,7 @@ import logging
 import requests
 from os.path import exists
 
+
 jwt_storage_default_path = '/tmp/space_know_token'
 logger = logging.getLogger('api_logger')
 
@@ -12,7 +13,7 @@ class CLientError(Exception):
 class ServerError(Exception):
   pass
 
-class SpaceKnowAuthApi:
+class AuthApi():
   def __init__(self, auth_endpoint: str, username: str, password: str):
     self.auth_endpoint = auth_endpoint
     self.username = username

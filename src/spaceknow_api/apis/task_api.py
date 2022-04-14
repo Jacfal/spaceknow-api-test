@@ -1,45 +1,14 @@
-import time
-import geojson 
-import logging
-
-from dataclasses import dataclass
 from datetime import datetime, timedelta
-from auth import SpaceKnowAuthApi
+import logging
+import time
 
-logger = logging.getLogger('ragnar')
-
-@dataclass
-class Extent: 
-  type: str
-  geometries: geojson.geometry
-
-@dataclass
-class RagnarApiArgs:
-  cursor: str
-  provider: str
-  dataset: str
-  startDatetime: datetime
-  endDatetime: datetime
-  extent: Extent
-  
-
-class SpaceKnowAsyncApi():
-  def __init__(self, api_endpoint: str, client_api: SpaceKnowAuthApi) -> None:
-      self.api_endpoint = api_endpoint
-      self.client_api = client_api
-
-  def initiate(self, data: dict) -> dict: 
-    initiate_url = f"{self.api_endpoint}/search/initiate"
-    return self.client_api.request(initiate_url, data)
-    
-  def retreive(self, pipeline_id: str) -> dict:
-    retreive_url = f"{self.api_endpoint}/search/retrieve"
-    pipeline_id_dict = { 'pipelineId': pipeline_id }
-    return self.client_api.request(retreive_url, pipeline_id_dict)
+from apis.auth_api import AuthApi
 
 
-class TaskingApi():
-    def __init__(self, api_endpoint: str, client_api: SpaceKnowAuthApi) -> None:
+logger = logging.getLogger('task_api')
+
+class TaskApi():
+    def __init__(self, api_endpoint: str, client_api: AuthApi) -> None:
       self.api_endpoint = api_endpoint
       self.client_api = client_api
       
@@ -73,7 +42,3 @@ class TaskingApi():
         
         time.sleep(next_try)
   
-
-class RagnarApi(SpaceKnowAsyncApi):
-  def __init__(self, client_api: SpaceKnowAuthApi) -> None:
-      super().__init__('https://api.spaceknow.com/imagery', client_api)
