@@ -7,7 +7,10 @@ from os.path import exists
 jwt_storage_default_path = '/tmp/space_know_token'
 logger = logging.getLogger('api_logger')
 
-class CLientError(Exception):
+class ApiError(Exception):
+  pass
+
+class ClientError(Exception):
   pass
 
 class ServerError(Exception):
@@ -96,7 +99,7 @@ class AuthApi():
       else:
         err_msg = f"Client side error occurs: {response.text}"
         logger.error(err_msg)
-        raise CLientError(err_msg)
+        raise ClientError(err_msg)
     elif response.status_code >= 500 and response.status_code <= 599:
       # server side err
       err_msg = f"Server side error occurs: {response.text}"
