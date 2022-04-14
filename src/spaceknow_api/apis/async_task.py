@@ -12,8 +12,8 @@ class AsyncTask():
       self.client_api = auth_api
       self.task_api = task_api
       
-      self.initiate_url = f"{self.api_endpoint}/search/initiate" # TODO try if it's private
-      self.retreive_url = f"{self.api_endpoint}/search/retrieve"
+      self.initiate_url = f"{self.api_endpoint}/initiate" # TODO try if it's private
+      self.retreive_url = f"{self.api_endpoint}/retrieve"
       self.pipeline_id = None
       
       self.completed = False
