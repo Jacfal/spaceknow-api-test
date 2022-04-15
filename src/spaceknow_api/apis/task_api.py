@@ -18,7 +18,7 @@ class TaskApi():
         status = response.get('status', 'UNKNOWN')
         return (next_try, status)
 
-    def wait_unit_ready(self, pipeline_id: str, init_delay: int = 0, timeout_seconds: int = 60):
+    def wait_until_ready(self, pipeline_id: str, init_delay: int = 0, timeout_seconds: int = 60):
         logger.info(f"Waiting for completion of pipeline id {pipeline_id}, timeout: {timeout_seconds}s")
         time.sleep(init_delay)
         start_time = datetime.now()
@@ -30,16 +30,16 @@ class TaskApi():
         
             logger.info(f"PipeId {pipeline_id} -> request status: {status}, next try: {next_try}")
             if status == 'RESOLVED':
-                logger.info('RAGNAR done')
+                logger.info(f"PipeId {pipeline_id} DONE")
                 break
             
             if status == 'FAILED':
-                logger.info('RAGNAR done with FAILED')
+                logger.error(f"PipeId {pipeline_id} FAILED")
                 break
             
             if  datetime.now() > (start_time + timedelta(seconds=timeout_seconds)):
-                logger.error('OPERATION TIMEOUT')
+                logger.error(f"PipeId {pipeline_id} OPERATION TIMEOUT")
                 break
         
-        time.sleep(next_try)
+            time.sleep(next_try)
   

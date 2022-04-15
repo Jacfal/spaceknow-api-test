@@ -21,7 +21,7 @@ class AsyncTask():
         self._lock = threading.Lock()
   
     def __wait_until_ready(self, init_delay: int):
-        self.task_api.wait_unit_ready(self.pipeline_id, init_delay)
+        self.task_api.wait_until_ready(self.pipeline_id, init_delay)
         with self._lock:
             self.completed = True
   
