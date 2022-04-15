@@ -160,3 +160,4 @@ cython_debug/
 #.idea/
 .vscode
 scripts 
+src/spaceknow_api/spaceknow_api.py
