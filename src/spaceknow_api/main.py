@@ -13,7 +13,6 @@ logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger('main')
 
 def main():  
-    
     username = input('Username: ')
     if not username:
         raise ArgumentError("Invalid username")
@@ -55,7 +54,11 @@ def main():
     while not kraken_task.completed:
         logger.debug("Waiting for Kraken api...")
         time.sleep(2)
+        
     print(kraken_task.retreive())
+    
+    # Get results from datacube
+    # Get grid files
   
 if __name__ == "__main__":
   main()

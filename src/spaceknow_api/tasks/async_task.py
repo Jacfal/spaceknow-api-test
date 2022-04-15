@@ -8,6 +8,10 @@ import threading
 logger = logging.getLogger('async_task')
 
 class AsyncTask():
+    """
+    Run this task for communication with async api https://docs.spaceknow.com/api/mechanics.html#asynchronous-apis.
+     One time task -> retrieve when completed
+    """
     def __init__(self, api_endpoint: str, auth_api: AuthApi, task_api: TaskApi) -> None:
         self.api_endpoint = api_endpoint
         self.client_api = auth_api

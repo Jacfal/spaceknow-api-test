@@ -9,10 +9,9 @@ logger = logging.getLogger('auth_api')
 JWT_STORAGE_DEFAULT_PATH = '/tmp/space_know_token'
 
 class AuthApi():
-    '''
-    Spaceknow auth api handler
-    '''
-
+    """ 
+    Auth api handler https://docs.spaceknow.com/api/mechanics.html#authorization
+    """
     def __init__(self, auth_endpoint: str, username: str, password: str):
         self.auth_endpoint = auth_endpoint
         self.__username = username
@@ -81,9 +80,18 @@ class AuthApi():
         logger.debug("Token request successfull from auth endpoint {self.auth_endpoint}")
         return response.json()
       
-    def request(self, api_url: str, data: dict) -> json:     
+    def request(self, api_url: str, data: dict) -> json:
+        """Send authorized request to the spaceknow api endpoint
+
+        Args:
+            api_url (str): Api url endpoint
+            data (dict): Data to send 
+
+        Returns:
+            json: Response data json
+        """
         request_headers = {
-          'Host': 'api.spaceknow.com'
+            'Host': 'api.spaceknow.com'
         }
     
         self.__authorize(request_headers)

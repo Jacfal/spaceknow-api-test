@@ -1,16 +1,13 @@
 class ApiError(Exception):
-    '''
-    General spaceknow api error
-    '''
+  """General spaceknow api error
+  """
 
 
 class ClientError(Exception):
-    '''
-    Client side error
-    '''
+  """Client side error
+  """
 
 
 class ServerError(Exception):
-    '''
-    Server side error
-    '''
+  """Server side error
+  """
