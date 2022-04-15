@@ -1,8 +1,8 @@
-# SpaceKnow client api test
+# SpaceKnow client API test
 
-Simple client api for for communication with SpaceKnow analytics backend. I run's car analysis on defined area 
+Simple client API for communication with SpaceKnow analytics backend. I run car analysis on the defined area 
 
-Spaceknow api doc could be find [here](https://docs.spaceknow.com)
+Spaceknow API doc could be found [here](https://docs.spaceknow.com)
 
 Try it with: 
 
